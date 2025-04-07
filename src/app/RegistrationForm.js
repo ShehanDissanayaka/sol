@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
@@ -32,7 +31,7 @@ export default function RegistrationForm() {
     }
 
     try {
-      const res = await fetch("/api/register", {
+      const res = await fetch("/.netlify/functions/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -61,7 +60,6 @@ export default function RegistrationForm() {
 
   return (
     <section id="register" className="relative min-h-screen bg-black text-white overflow-hidden">
-      
       <div className="absolute inset-0 z-0">
         <Image
           src="/orgimage.jpg"
@@ -80,7 +78,6 @@ export default function RegistrationForm() {
           transition={{ duration: 0.6, ease: "easeOut" }}
           className="backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl p-10 max-w-5xl w-full grid md:grid-cols-2 gap-10"
         >
-          
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -93,7 +90,6 @@ export default function RegistrationForm() {
             </p>
           </motion.div>
 
-          
           {submitted ? (
             <motion.div
               initial={{ opacity: 0, y: 50 }}
