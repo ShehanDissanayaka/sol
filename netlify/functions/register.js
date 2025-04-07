@@ -1,23 +1,34 @@
 import { MongoClient } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
-const client = new MongoClient(uri);
 
 export async function handler(event) {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
-      body: 'Method Not Allowed',
+      body: JSON.stringify({ message: 'Method Not Allowed' }),
     };
   }
 
-  try {
-    const { name, email, company, jobTitle } = JSON.parse(event.body);
+  const client = new MongoClient(uri);
 
-    if (!name || !email || !company || !jobTitle) {
+  try {
+    const {
+      firstName,
+      lastName,
+      jobTitle,
+      company,
+      mobileNumber,
+      email,
+      companyWebsite,
+      agree,
+    } = JSON.parse(event.body);
+
+    // Basic validation
+    if (!firstName || !lastName || !email || !jobTitle || !company) {
       return {
         statusCode: 400,
-        body: 'Missing required fields',
+        body: JSON.stringify({ message: 'Missing required fields' }),
       };
     }
 
@@ -25,17 +36,28 @@ export async function handler(event) {
     const db = client.db('registrationDB');
     const collection = db.collection('registrations');
 
-    await collection.insertOne({ name, email, company, jobTitle });
+    // Insert form data
+    await collection.insertOne({
+      firstName,
+      lastName,
+      jobTitle,
+      company,
+      mobileNumber,
+      email,
+      companyWebsite,
+      agree,
+      createdAt: new Date(),
+    });
 
     return {
       statusCode: 200,
-      body: 'Registration successful',
+      body: JSON.stringify({ message: 'Registration successful' }),
     };
   } catch (error) {
     console.error('Registration error:', error);
     return {
       statusCode: 500,
-      body: 'Internal Server Error',
+      body: JSON.stringify({ message: 'Internal Server Error' }),
     };
   } finally {
     await client.close();
