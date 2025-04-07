@@ -16,12 +16,13 @@ export default function AboutFinastra() {
           <h2 className="text-4xl sm:text-5xl font-bold mb-6 bg-gradient-to-r from-purple-300 to-pink-400 bg-clip-text text-transparent">
             About Finastra
           </h2>
+          
           <p className="text-lg text-gray-200 leading-relaxed">
             Finastra is a global provider of financial services software applications across Lending, Payments,
             Treasury and Capital Markets, and Universal (retail and digital) Banking. Committed to unlocking the
             potential of people, businesses and communities everywhere, its vision is to accelerate the future of
             Open Finance through technology and collaboration, and its pioneering approach is why it is trusted by
-            ~8,100 financial institutions, including 45 of the world's top 50 banks.
+            ~8,100 financial institutions, including 45 of the world top 50 banks.
           </p>
           <p className="mt-6 text-lg">
             For more information, visit{" "}

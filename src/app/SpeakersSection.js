@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import SpeakerModal from "./SpeakerModal";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const speakers = [
     {
@@ -132,55 +133,61 @@ Matthew is based in Singapore and is bilingual in Spanish.`,
 
 const SpeakersSection = () => {
     const [selectedSpeaker, setSelectedSpeaker] = useState(null);
-
+  
     const handleCardClick = (speaker) => setSelectedSpeaker(speaker);
     const handleClose = () => setSelectedSpeaker(null);
-
+  
     return (
-        <div
-            id="speakers"
-            className="relative py-28 bg-gradient-to-br from-black via-[#1a002b] to-[#3a0ca3] text-white overflow-hidden"
-        >
-            
-            <div className="absolute inset-0 z-0">
-                <img
-                    src="/images/overviewimage.jpg"
-                    alt="Background"
-                    className="w-full h-full object-cover opacity-10 blur-lg"
-                />
-            </div>
-
-            <div className="relative z-10 text-center text-white mb-10">
-                <h2 className="text-4xl font-bold mb-4">Our Speakers</h2>
-            </div>
-
-            <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-6">
-                {speakers.map((speaker) => (
-                    <motion.div
-                        key={speaker.id}
-                        className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform"
-                        onClick={() => handleCardClick(speaker)}
-                        whileHover={{ scale: 1.05 }}
-                    >
-                        <img
-                            src={speaker.image}
-                            alt={speaker.name}
-                            className="w-full h-[300px] object-top object-contain bg-black"
-                        />
-                        <div className="p-4 text-center">
-                            <h3 className="text-white text-lg font-bold">{speaker.name}</h3>
-                            <p className="text-sm text-gray-300">{speaker.title}</p>
-                            <p className="text-sm text-gray-400">{speaker.company}</p>
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
-
-            {selectedSpeaker && (
-                <SpeakerModal speaker={selectedSpeaker} onClose={handleClose} />
-            )}
+      <div
+        id="speakers"
+        className="relative py-28 bg-gradient-to-br from-black via-[#1a002b] to-[#3a0ca3] text-white overflow-hidden"
+      >
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/images/overviewimage.jpg"
+            alt="Background"
+            fill
+            className="object-cover opacity-10 blur-lg"
+            unoptimized
+          />
         </div>
+  
+        <div className="relative z-10 text-center mb-10">
+          <h2 className="text-4xl font-bold mb-4">Our Speakers</h2>
+        </div>
+  
+        <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 px-6">
+          {speakers.map((speaker) => (
+            <motion.div
+              key={speaker.id}
+              className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden shadow-lg cursor-pointer hover:scale-105 transition-transform"
+              onClick={() => handleCardClick(speaker)}
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="relative w-full h-[300px] bg-black">
+                <Image
+                  src={speaker.image}
+                  alt={speaker.name}
+                  fill
+                  className="object-contain object-top"
+                  unoptimized
+                />
+              </div>
+              <div className="p-4 text-center">
+                <h3 className="text-white text-lg font-bold">{speaker.name}</h3>
+                <p className="text-sm text-gray-300">{speaker.title}</p>
+                <p className="text-sm text-gray-400">{speaker.company}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+  
+        {selectedSpeaker && (
+          <SpeakerModal speaker={selectedSpeaker} onClose={handleClose} />
+        )}
+      </div>
     );
-};
-
-export default SpeakersSection;
+  };
+  
+  export default SpeakersSection;

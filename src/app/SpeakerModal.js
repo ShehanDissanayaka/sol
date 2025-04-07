@@ -1,6 +1,7 @@
 "use client";
 import { motion, AnimatePresence } from "framer-motion";
 import React from "react";
+import Image from "next/image"; 
 
 const SpeakerModal = ({ speaker, onClose }) => {
   return (
@@ -19,7 +20,6 @@ const SpeakerModal = ({ speaker, onClose }) => {
             exit={{ scale: 0.8, y: 50, opacity: 0 }}
             transition={{ duration: 0.5, type: "spring", stiffness: 120 }}
           >
-            
             <button
               className="absolute top-4 right-4 text-black text-2xl hover:text-gray-600 transition"
               onClick={onClose}
@@ -28,10 +28,13 @@ const SpeakerModal = ({ speaker, onClose }) => {
             </button>
 
             <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-              <img
+             
+              <Image
                 src={speaker.image}
                 alt={speaker.name}
-                className="w-40 h-40 object-cover rounded-lg shadow-md"
+                width={160}
+                height={160}
+                className="object-cover rounded-lg shadow-md"
               />
               <div className="text-gray-800">
                 <h3 className="text-2xl font-bold">{speaker.name}</h3>
@@ -43,7 +46,6 @@ const SpeakerModal = ({ speaker, onClose }) => {
               </div>
             </div>
 
-            
             <div className="flex justify-end mt-6">
               <motion.button
                 whileHover={{ scale: 1.05 }}

@@ -69,8 +69,8 @@ export default function EventOverview() {
             className="space-y-6 text-lg text-gray-200"
           >
             <p>
-              Join us on April 9th in Cairo, Egypt, for Finastra's Universal Banking Forum,
-              "Reimagine Banking: Adapt. Evolve. Thrive." This exclusive event is designed to help
+              Join us on April 9th in Cairo, Egypt, for Finastra Universal Banking Forum,
+              Reimagine Banking: Adapt. Evolve. Thrive. This exclusive event is designed to help
               you navigate and excel in the rapidly evolving banking landscape.
             </p>
             <p>
@@ -84,7 +84,7 @@ export default function EventOverview() {
               technologies and capitalize on emerging opportunities.
             </p>
             <p>
-              Don't miss this opportunity to enhance your knowledge, skills, and network in the
+              Donot miss this opportunity to enhance your knowledge, skills, and network in the
               finance and banking sector. Register today and secure your place at this must-attend
               event!
             </p>
